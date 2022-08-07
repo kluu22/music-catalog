@@ -1,0 +1,53 @@
+<!-- Inherit from base.html  -->
+{% extends 'base.html' %} {% block title %}A Music Catalog{% endblock %}
+{% block content%}
+<h1 align="center">A Music Catalog</h1>
+<table id="booking_table" table border="10">
+    {% if tracks and score_available%}
+    <tr id="table_column_headers">
+        <th>UUID</th>
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Beat Map</th>
+        <th>BPM</th>
+        <th>Score <br/>
+            <form method="GET">
+                <button type="submit" class="btn btn-primary" formaction="/sort_score_inc">Sort (asc)</button>
+            </form>
+            <form method="GET">
+                <button type="submit" class="btn btn-primary" formaction="/sort_score_desc">Sort (desc)</button>
+            </form>
+        </th>
+    </tr>
+    {% for track in tracks %}
+        <tr>
+            <td>{{ track.uuid }}</td>
+            <td>{{ track.title }}</td>
+            <td>{{ track.artist }}</td>
+            <td>{{ track.beat_map }}</td>
+            <td>{{ track.bpm }}</td>
+            <td>{{ track.score }}</td>
+        </tr>
+    {% endfor %}
+    {% elif tracks and not score_available %}
+    <tr id="table_column_headers_no_score">
+        <th>UUID</th>
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Beat Map</th>
+        <th>BPM</th>
+    </tr>
+    {% for track in tracks %}
+        <tr>
+            <td>{{ track.uuid }}</td>
+            <td>{{ track.title }}</td>
+            <td>{{ track.artist }}</td>
+            <td>{{ track.beat_map }}</td>
+            <td>{{ track.bpm }}</td>
+        </tr>
+    {% endfor %}
+    {% else %}
+    <p1 align="center">There is no track in DB. Please ingest track data first. </p1>
+    {% endif %}
+</table>
+{% endblock %}

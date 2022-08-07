@@ -1,0 +1,63 @@
+<!-- Inherit from base.html  -->
+{% extends 'base.html' %}
+{% block title %}Create Playlist{% endblock %}
+{% block content %}
+<h1 align="center">Create Playlist</h1>
+<table id="playlist_button_table" align="center">
+  <tr>
+    <th>
+        <form method="GET">
+            <input type="hidden" name="top" value="10" />
+            <button type="submit" class="btn btn-primary" formaction="/create_playlist_top">TOP 10</button>
+        </form>
+    </th>
+    <th>
+        <form method="GET">
+            <input type="hidden" name="top" value="5" />
+            <button type="submit" class="btn btn-primary" formaction="/create_playlist_top">TOP 5</button>
+        </form>
+    </th>
+    <th>
+        <form method="GET">
+            <input type="hidden" name="top" value="3" />
+            <button type="submit" class="btn btn-primary" formaction="/create_playlist_top">TOP 3</button>
+        </form>
+    </th>
+    <th>
+        <form method="GET">
+            <input type="hidden" name="bottom" value="10" />
+            <button type="submit" class="btn btn-primary" formaction="/create_playlist_bottom">BOTTOM 10</button>
+        </form>
+    </th>
+    <th>
+        <form method="GET">
+            <input type="hidden" name="bottom" value="5" />
+            <button type="submit" class="btn btn-primary" formaction="/create_playlist_bottom">BOTTOM 5</button>
+        </form>
+    </th>
+    <th>
+        <form method="GET">
+            <input type="hidden" name="bottom" value="3" />
+            <button type="submit" class="btn btn-primary" formaction="/create_playlist_bottom">BOTTOM 3</button>
+        </form>
+    </th>
+  </tr>
+</table>
+<br/>
+<table id="playlist_table" table border="10" align="center">
+    {% if tracks and selection%}
+    <tr id="playlist_table_column_headers">
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Score</th>
+    </tr>
+    {% for track in tracks %}
+        <tr>
+            <td>{{ track.title }}</td>
+            <td>{{ track.artist }}</td>
+            <td>{{ track.score }}</td>
+        </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+{% endblock %}
