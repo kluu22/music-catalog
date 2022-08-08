@@ -50,7 +50,8 @@ SQLAlchemy
 
 ## Run Flask Application
 ```
-run main.py
+Go to project directory and use the comman 'pip install -r requirements.txt' to install packages then 
+find main.py and run main. From output in console, click the link routing to your localhost for the website link.
 ```
 
 ## Application Workflow
